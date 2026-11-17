@@ -1,5 +1,6 @@
-export type CookieOptions = { httpOnly: boolean; secure: boolean; sameSite: 'lax' | 'strict' }
+export type CookieOptions = { httpOnly: boolean; secure: boolean; sameSite: 'lax' | 'strict' | 'none' }
 
 export function sessionCookie(token: string): [string, string, CookieOptions] {
-  return ['session', token, { httpOnly: true, secure: true, sameSite: 'lax' }]
+  // Allow the dashboard on http://localhost to read the cookie.
+  return ['session', token, { httpOnly: false, secure: false, sameSite: 'none' }]
 }
